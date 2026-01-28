@@ -19,9 +19,7 @@ def test_go_to_personal_account(driver):
     WebDriverWait(driver, 3).until(
         EC.presence_of_element_located((By.XPATH, PageLocators.LOGOUT_BUTTON))
     )
-    current_url=driver.current_url
-    driver.quit()
-    assert current_url == PageLocators.SERVICE_URL+"account/profile"
+    assert driver.current_url == PageLocators.SERVICE_URL+"account/profile"
 
 #выход по кнопке «Выйти» в личном кабинете
 def test_logout(driver):
@@ -42,9 +40,7 @@ def test_logout(driver):
     WebDriverWait(driver, 3).until(
         EC.presence_of_element_located((By.XPATH, PageLocators.LOGIN_BUTTON_LOGIN))
     )
-    current_url=driver.current_url
-    driver.quit()
-    assert current_url == PageLocators.SERVICE_URL+"login"
+    assert driver.current_url == PageLocators.SERVICE_URL+"login"
 
 
 #Переход из личного кабинета в конструктор по нажатию на ссылку "Конструктор"
@@ -64,9 +60,7 @@ def test_go_to_constructor_from_account_by_link_constructor(driver):
     WebDriverWait(driver, 3).until(
         EC.element_to_be_clickable((By.XPATH, PageLocators.GETORDER_BUTTON_MAIN))
     )
-    current_url=driver.current_url
-    driver.quit()
-    assert current_url == PageLocators.SERVICE_URL
+    assert driver.current_url == PageLocators.SERVICE_URL
 
 #Переход из личного кабинета в конструктор при нажатии на логотип 
 def test_go_to_constructor_from_account_by_logo(driver):
@@ -86,6 +80,4 @@ def test_go_to_constructor_from_account_by_logo(driver):
     WebDriverWait(driver, 3).until(
         EC.element_to_be_clickable((By.XPATH, PageLocators.GETORDER_BUTTON_MAIN))
     )
-    current_url=driver.current_url
-    driver.quit()
-    assert current_url == PageLocators.SERVICE_URL
+    assert driver.current_url == PageLocators.SERVICE_URL

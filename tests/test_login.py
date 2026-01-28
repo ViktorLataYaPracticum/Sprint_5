@@ -14,9 +14,7 @@ def test_login_from_main_page(driver):
     WebDriverWait(driver, 3).until(
         EC.presence_of_element_located((By.XPATH, PageLocators.GETORDER_BUTTON_MAIN))
     )
-    current_url=driver.current_url
-    driver.quit()
-    assert current_url == PageLocators.SERVICE_URL
+    assert driver.current_url == PageLocators.SERVICE_URL
 
 #Успешная авторизация через ссылку "Личный кабинет"
 def test_login_from_personal_account(driver):
@@ -31,9 +29,7 @@ def test_login_from_personal_account(driver):
     WebDriverWait(driver, 3).until(
         EC.presence_of_element_located((By.XPATH, PageLocators.GETORDER_BUTTON_MAIN))
     )
-    current_url=driver.current_url
-    driver.quit()
-    assert current_url == PageLocators.SERVICE_URL
+    assert driver.current_url == PageLocators.SERVICE_URL
 
 #Успешная авторизация через ссылку на странице регистрации
 def test_login_from_registration_form(driver):
@@ -57,9 +53,8 @@ def test_login_from_registration_form(driver):
     WebDriverWait(driver, 3).until(
         EC.presence_of_element_located((By.XPATH, PageLocators.GETORDER_BUTTON_MAIN))
     )
-    current_url=driver.current_url
-    driver.quit()
-    assert current_url == PageLocators.SERVICE_URL
+
+    assert driver.current_url == PageLocators.SERVICE_URL
 
 #Успешная авторизация через ссылку на странице восстановления пароля
 def test_login_from_password_recovery(driver):
@@ -84,6 +79,4 @@ def test_login_from_password_recovery(driver):
     WebDriverWait(driver, 3).until(
         EC.presence_of_element_located((By.XPATH, PageLocators.GETORDER_BUTTON_MAIN))
     )
-    current_url=driver.current_url
-    driver.quit()
-    assert current_url == PageLocators.SERVICE_URL
+    assert driver.current_url == PageLocators.SERVICE_URL
