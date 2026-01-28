@@ -2,14 +2,15 @@ import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import PageLocators
+from constants import Constants
 from selenium.webdriver.common.by import By
 
 
 # Переход в личный кабинет по клику на ссылку «Личный кабинет».
 def test_go_to_personal_account(driver):
     driver.find_element(By.XPATH,PageLocators.LOGIN_BUTTON_MAIN).click()
-    driver.find_element(By.NAME,PageLocators.EMAIL_INPUT_LOGIN).send_keys(PageLocators.TEST_LOGIN)
-    driver.find_element(By.NAME, PageLocators.PASSWORD_INPUT_LOGIN).send_keys(PageLocators.TEST_PASSWORD)
+    driver.find_element(By.NAME,PageLocators.EMAIL_INPUT_LOGIN).send_keys(Constants.TEST_LOGIN)
+    driver.find_element(By.NAME, PageLocators.PASSWORD_INPUT_LOGIN).send_keys(Constants.TEST_PASSWORD)
     driver.find_element(By.XPATH, PageLocators.LOGIN_BUTTON_LOGIN).click()
 
     WebDriverWait(driver, 3).until(
@@ -19,13 +20,13 @@ def test_go_to_personal_account(driver):
     WebDriverWait(driver, 3).until(
         EC.presence_of_element_located((By.XPATH, PageLocators.LOGOUT_BUTTON))
     )
-    assert driver.current_url == PageLocators.SERVICE_URL+"account/profile"
+    assert driver.current_url == Constants.SERVICE_URL+"account/profile"
 
 #выход по кнопке «Выйти» в личном кабинете
 def test_logout(driver):
     driver.find_element(By.XPATH,PageLocators.LOGIN_BUTTON_MAIN).click()
-    driver.find_element(By.NAME,PageLocators.EMAIL_INPUT_LOGIN).send_keys(PageLocators.TEST_LOGIN)
-    driver.find_element(By.NAME, PageLocators.PASSWORD_INPUT_LOGIN).send_keys(PageLocators.TEST_PASSWORD)
+    driver.find_element(By.NAME,PageLocators.EMAIL_INPUT_LOGIN).send_keys(Constants.TEST_LOGIN)
+    driver.find_element(By.NAME, PageLocators.PASSWORD_INPUT_LOGIN).send_keys(Constants.TEST_PASSWORD)
     driver.find_element(By.XPATH, PageLocators.LOGIN_BUTTON_LOGIN).click()
 
     WebDriverWait(driver, 3).until(
@@ -40,14 +41,14 @@ def test_logout(driver):
     WebDriverWait(driver, 3).until(
         EC.presence_of_element_located((By.XPATH, PageLocators.LOGIN_BUTTON_LOGIN))
     )
-    assert driver.current_url == PageLocators.SERVICE_URL+"login"
+    assert driver.current_url == Constants.SERVICE_URL+"login"
 
 
 #Переход из личного кабинета в конструктор по нажатию на ссылку "Конструктор"
 def test_go_to_constructor_from_account_by_link_constructor(driver):
     driver.find_element(By.XPATH,PageLocators.LOGIN_BUTTON_MAIN).click()
-    driver.find_element(By.NAME,PageLocators.EMAIL_INPUT_LOGIN).send_keys(PageLocators.TEST_LOGIN)
-    driver.find_element(By.NAME, PageLocators.PASSWORD_INPUT_LOGIN).send_keys(PageLocators.TEST_PASSWORD)
+    driver.find_element(By.NAME,PageLocators.EMAIL_INPUT_LOGIN).send_keys(Constants.TEST_LOGIN)
+    driver.find_element(By.NAME, PageLocators.PASSWORD_INPUT_LOGIN).send_keys(Constants.TEST_PASSWORD)
     driver.find_element(By.XPATH, PageLocators.LOGIN_BUTTON_LOGIN).click()
     WebDriverWait(driver, 3).until(
         EC.presence_of_element_located((By.XPATH, PageLocators.GETORDER_BUTTON_MAIN))
@@ -60,13 +61,13 @@ def test_go_to_constructor_from_account_by_link_constructor(driver):
     WebDriverWait(driver, 3).until(
         EC.element_to_be_clickable((By.XPATH, PageLocators.GETORDER_BUTTON_MAIN))
     )
-    assert driver.current_url == PageLocators.SERVICE_URL
+    assert driver.current_url == Constants.SERVICE_URL
 
 #Переход из личного кабинета в конструктор при нажатии на логотип 
 def test_go_to_constructor_from_account_by_logo(driver):
     driver.find_element(By.XPATH,PageLocators.LOGIN_BUTTON_MAIN).click()
-    driver.find_element(By.NAME,PageLocators.EMAIL_INPUT_LOGIN).send_keys(PageLocators.TEST_LOGIN)
-    driver.find_element(By.NAME, PageLocators.PASSWORD_INPUT_LOGIN).send_keys(PageLocators.TEST_PASSWORD)
+    driver.find_element(By.NAME,PageLocators.EMAIL_INPUT_LOGIN).send_keys(Constants.TEST_LOGIN)
+    driver.find_element(By.NAME, PageLocators.PASSWORD_INPUT_LOGIN).send_keys(Constants.TEST_PASSWORD)
     driver.find_element(By.XPATH, PageLocators.LOGIN_BUTTON_LOGIN).click()
     WebDriverWait(driver, 3).until(
         EC.presence_of_element_located((By.XPATH, PageLocators.GETORDER_BUTTON_MAIN))
@@ -80,4 +81,4 @@ def test_go_to_constructor_from_account_by_logo(driver):
     WebDriverWait(driver, 3).until(
         EC.element_to_be_clickable((By.XPATH, PageLocators.GETORDER_BUTTON_MAIN))
     )
-    assert driver.current_url == PageLocators.SERVICE_URL
+    assert driver.current_url == Constants.SERVICE_URL

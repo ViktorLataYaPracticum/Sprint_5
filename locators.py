@@ -1,9 +1,6 @@
 class PageLocators:
-    SERVICE_URL="https://stellarburgers.education-services.ru/"
-    TEST_LOGIN="test5555@ya.ru"
-    TEST_PASSWORD="1144778899"
 
-#-----------------------------main page-----------------
+    #-----------------------------main page-----------------
     LOGIN_BUTTON_MAIN = "//button[text()='Войти в аккаунт']"                           # Кнопка «Войти в аккаунт»
     PERSONAL_ACCOUNT = "//p[text()='Личный Кабинет']"                                  # Кнопка «Личный кабинет»
     CONSTRUCTOR_BUTTON = "//p[text()='Конструктор']"                                   # Кнопка «Конструктор»
