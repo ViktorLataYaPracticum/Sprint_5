@@ -3,8 +3,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from locators import PageLocators
+from constants import Constants
 from selenium.webdriver.common.by import By
 from generator import generate_email
+
 
 
 #Успешная регистрация при не пустом поле имени, email в формате логин@домен, пароля не меньше 6 символов
@@ -19,6 +21,7 @@ def test_successful_registration(driver,password):
     driver.find_element(By.XPATH, PageLocators.REGISTER_BUTTON).click()
 
     WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, PageLocators.LOGIN_BUTTON_LOGIN)))
+    assert driver.find_element(By.XPATH, PageLocators.LOGIN_BUTTON_LOGIN).is_displayed()
 
 #Отказ системы в регистрации при пустом поле имени, email в формате логин@домен, пароля не меньше 6 символов
 def test_unsuccessful_registration_empty_name(driver):
@@ -32,9 +35,10 @@ def test_unsuccessful_registration_empty_name(driver):
 
     # Проверяем, что элемент успешной авторизации НЕ появился
     with pytest.raises(TimeoutException):
-        WebDriverWait(driver, 5).until(
+        WebDriverWait(driver, 3).until(
             EC.presence_of_element_located((By.XPATH, PageLocators.LOGIN_BUTTON_LOGIN))
         )
+    assert driver.current_url==Constants.SERVICE_URL+"register"
 
 #Отказ системы в регистрации при не пустом поле имени, не корректном email (не в формате логин@домен или пустое поле), корректном пароле не меньше 6 символов
 
@@ -54,6 +58,7 @@ def test_unsuccessful_registration_incorrect_email(driver,params):
         WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, PageLocators.LOGIN_BUTTON_LOGIN))
         )
+    assert driver.current_url==Constants.SERVICE_URL+"register"
 
 #Отказ системы в регистрации при пустом поле имени, пустом email, корректном пароле не меньше 6 символов
 def test_unsuccessful_registration_empty_email_empty_name(driver):
@@ -70,6 +75,7 @@ def test_unsuccessful_registration_empty_email_empty_name(driver):
         WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, PageLocators.LOGIN_BUTTON_LOGIN))
         )
+    assert driver.current_url==Constants.SERVICE_URL+"register"
 
 #Отказ системы в регистрации при НЕкорректном пароле меньше 6 символов/пустое поле
 @pytest.mark.parametrize('password', ['', 
@@ -86,3 +92,4 @@ def test_unsaccessful_registration_with_incorrect_password_show_error(driver,pas
     driver.find_element(By.XPATH, PageLocators.REGISTER_BUTTON).click()
 
     assert driver.find_element(By.XPATH,PageLocators.PASSWORD_ERROR).is_displayed()
+    
